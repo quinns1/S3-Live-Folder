@@ -1,0 +1,12 @@
+<html><link rel='stylesheet' href='CSS\style.css' type='text/css'><head></head>
+<body><a href="javascript:history.back()">Back</a><br><br>
+<h3>Cryptography</h3>
+<br>
+<hr>
+<p>I used fernet symmetric encryption which means only one key is used to encrypt and decrypt the data. To generate this key, I used a password based key derivation function (PBKDF2). The benefits of a PBKDF2 over a traditional Hashing function is that it provides better protection against rainbow tables (designed to algorithmically retrieve keys from large dictionaries). Adding ‘Salt’ also increases the passwords entropy (a measure of a passwords strength). The hashing algorithm used is this function is SHA256 (Secure Hashing Algorithm)
+
+ Every file uploaded to our S3 bucket by the folder is encrypted first. This is achieved by leveraging the python ‘cryptography’ package.
+One of the difficulties I faced when encrypting and decrypting the files was that the file type was lost after it was encrypted, each file is saved as a ‘.encrypted’ filetype. I overcame this by parsing the file extension (.txt, .exe etc) from each file before encrypting it and then appending it to the encrypted file data. Then on downloading an encrypted file from S3 the filetype was parsed from the data and appended onto the file name after it was decrypted. 
+
+</p>
+</body></html>

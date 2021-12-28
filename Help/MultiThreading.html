@@ -1,0 +1,14 @@
+<html><link rel='stylesheet' href='CSS\style.css' type='text/css'><head></head>
+<body><a href="javascript:history.back()">Back</a><br><br>
+<h3>Multi-Threading</h3>
+<br>
+<hr>
+<p>
+For the main program to run at the same time as the UI I had to introduce multi-threading. This is a technique by which 2 or more threads run simultaneously on the processor. This was achieved by importing the ‘threading’ module
+ and running the following code.
+ First, we define the thread and arguments to be passed in, as you can see here the main program is called ‘Live_Folder’ it is a function of the ‘S3_Live_Folder’ class. This was a design choice so that I could use class variables to stop the program and retrieve information from our S3 connection and SQLite databases easily.
+I face some challenges when introducing multi-threading into the program. Firstly, one of the limitations of SQLite is that each database can only be interacted with one thread at a time. So, for this reason I used 2 separate databases for our two tables, instead of two tables within the same database.
+Another issue I encountered when dealing with multiple threads was ending the main program thread. The UI can be terminated by clicking the ‘X’ or ‘Quit’ option in the file menu however this does not terminate the main loop. At first the only way to stop the main program was through the task manager. However, I introduced a function which always runs before the program shuts down, stopping all threads.
+
+</p>
+</body></html>

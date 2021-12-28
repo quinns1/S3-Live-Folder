@@ -1,0 +1,48 @@
+<html><link rel='stylesheet' href='CSS\style.css' type='text/css'><head></head>
+<body><a href="javascript:history.back()">Back</a><br><br>
+<h3>Program Operation</h3>
+<br>
+<hr>
+<ul>
+<p>
+The user will begin the application by opening AWS_S3_Live_Folder.exe. This will open a Graphical User Interface where the user will be
+asked to either setup a new connection or reconnect.
+</p>
+<h4>Setup New Connection</h4>
+<p>
+The user will provide the AWS AK, SAK and bucket name. They will also
+decide here if they wish to sync with bucket or run application in the background (discussed below)
+
+</p>
+<p>
+When the details are entered, and the user clicks connect, the connection to the AWS S3 bucket is tests. This 
+is done by uploading a sample file to the bucket and deleting it again, if the connection is successful 
+the users details are saved in an SQLite table located in the following location 'C:\sqlite'.
+The SQLite table has the following columns
+  <li>bn - Bucket Name</li>
+  <li>ak - Access Key</li>
+  <li>sak - Secret Access Key</li>
+</p>
+<p>
+As every Bucket in S3 has a unique name, this is why the bucket name is used as the Primary Key. 
+</p>
+<p>
+If the connection is not successful (the sample file fails to upload) an error message
+will appear and the user will be prompted to login again.
+<h4>Reconnect</h4>
+<p>
+The user will be able to choose from buckets already saved in the login details table 
+and as before, the user will choose to 'Run in Background' and 'Sync with Bucket'
+</p>
+<h4>Run in Background</h4>
+<p>
+If ticked this option will run the program as a background process. Leaving this option
+un-checked will keep the GUI open and the user will be able to close the program 
+by pressing 'Stop'
+</p>
+<h4>Sync with Bucket</h4>
+<p>
+This enables multiple users to use the bucket at the same time. Files will be downloaded and
+decrypted if they are encrypted and if they are not decrypted they'll be saved regardless.
+</p>
+</body></html>
